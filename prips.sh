@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 usage() {
-  [ ! -z $1 ] && echo $1
+  [ ! -z "$1" ] && echo $1
   cat <<EOF
 Print all IPs in a CIDR range, similar to the Ubuntu prips utility.
 This script assumes that the Red Hat version of ipcalc is available.
