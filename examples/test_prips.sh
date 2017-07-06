@@ -27,6 +27,11 @@ test_missing_args() {
   assertEquals 'You must pass a CIDR' "$first_line"
 }
 
+test_bad_input() {
+  first_line=$(. ./prips.sh bad_input | head -1)
+  assertEquals 'bad_input is not a valid CIDR' "$first_line"
+}
+
 test_a_little_cidr() {
   response=$(. ./prips.sh 192.168.0.2/28)
   expected="192.168.0.0 192.168.0.1 192.168.0.2 192.168.0.3 192.168.0.4 \

@@ -11,7 +11,9 @@ EOF
   exit 1
 }
 [ -h == "$1" ] && usage
-[ -z $1 ] && usage 'You must pass a CIDR'
+[ -z "$1" ] && usage 'You must pass a CIDR'
+echo $1 | egrep -q "^(?:[0-9]+\.){3}[0-9]+/[0-9]+$" || \
+  usage "$1 is not a valid CIDR"
 
 cidr=$1
 
