@@ -7,12 +7,13 @@ usage() {
   cat <<EOF
 Print all IPs in a CIDR range, similar to the Ubuntu prips utility.
 This script assumes that the Red Hat version of ipcalc is available.
-Usage: $0 <cidr>
+Usage: $0 <cidr> [-h]
 Example: $0 192.168.0.3/28
 EOF
   exit 1
 }
-[ -h == "$cidr" ] && usage
+[ -h == "$1" ] && usage
+[ ! -z "$2" ] && usage 'You may only pass one CIDR'
 [ -z "$cidr" ] && usage 'You must pass a CIDR'
 echo $cidr | egrep -q "^(?:[0-9]+\.){3}[0-9]+/[0-9]+$" || \
   usage "$cidr is not a valid CIDR"

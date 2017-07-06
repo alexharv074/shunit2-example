@@ -27,6 +27,11 @@ test_missing_args() {
   assertEquals 'You must pass a CIDR' "$first_line"
 }
 
+test_too_many_args() {
+  first_line=$(. ./prips.sh 192.168.0.2/28 192.168.0.2/30 | head -1)
+  assertEquals 'You may only pass one CIDR' "$first_line"
+}
+
 test_bad_input() {
   first_line=$(. ./prips.sh bad_input | head -1)
   assertEquals 'bad_input is not a valid CIDR' "$first_line"
