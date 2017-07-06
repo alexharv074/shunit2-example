@@ -25,15 +25,4 @@ hi=$(ipcalc -b $cidr | cut -f2 -d=)
 IFS=. read a b c d <<< "$lo"
 IFS=. read e f g h <<< "$hi"
 
-#eval "echo {$a..$e}.{$b..$f}.{$c..$g}.{$d..$h}"
-result=''
-for ((i=$a;i<=$e;i++)); do
-  for ((j=$b;j<=$f;j++)); do
-    for ((k=$c;k<=$g;k++)); do
-      for ((l=$d;l<=$h;l++)); do
-        result+=" $i.$j.$k.$l"
-      done
-    done
-  done
-done
-echo $result
+eval "echo {$a..$e}.{$b..$f}.{$c..$g}.{$d..$h}"
